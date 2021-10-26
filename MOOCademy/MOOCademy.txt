@@ -1,0 +1,21 @@
+CREATE TABLE Cours
+(
+  id          INTEGER NULL    ,
+  title       TEXT    NULL    ,
+  description TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE Lessons
+(
+  id       INTEGER NOT NULL,
+  title    TEXT    NULL    ,
+  body     TEXT    NULL    ,
+  cours_id INTEGER NOT NULL,
+  PRIMARY KEY (id)
+);
+
+ALTER TABLE Lessons
+  ADD CONSTRAINT FK_Cours_TO_Lessons
+    FOREIGN KEY (cours_id)
+    REFERENCES Cours (id);

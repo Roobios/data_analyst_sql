@@ -1,0 +1,32 @@
+CREATE TABLE comments
+(
+  id      INTEGER NOT NULL,
+  comment TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE pins
+(
+  id         INTEGER NOT NULL,
+  url        TEXT    NULL    ,
+  comment_id INTEGER NOT NULL,
+  user_id    INTEGER NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE users
+(
+  id   INTEGER NOT NULL,
+  name TEXT    NULL    ,
+  PRIMARY KEY (id)
+);
+
+ALTER TABLE pins
+  ADD CONSTRAINT FK_comments_TO_pins
+    FOREIGN KEY (comment_id)
+    REFERENCES comments (id);
+
+ALTER TABLE pins
+  ADD CONSTRAINT FK_users_TO_pins
+    FOREIGN KEY (user_id)
+    REFERENCES users (id);

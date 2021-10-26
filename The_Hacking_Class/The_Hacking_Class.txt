@@ -1,0 +1,25 @@
+CREATE TABLE courses
+(
+  id      INTEGER NOT NULL,
+  course  TEXT    NULL    ,
+  user_id INTEGER NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE users
+(
+  id        INTEGER NOT NULL,
+  name      TEXT    NULL    ,
+  course_id INTEGER NOT NULL DEFAULT UNIQUE,
+  PRIMARY KEY (id)
+);
+
+ALTER TABLE users
+  ADD CONSTRAINT FK_courses_TO_users
+    FOREIGN KEY (course_id)
+    REFERENCES courses (id);
+
+ALTER TABLE courses
+  ADD CONSTRAINT FK_users_TO_courses
+    FOREIGN KEY (user_id)
+    REFERENCES users (id);
